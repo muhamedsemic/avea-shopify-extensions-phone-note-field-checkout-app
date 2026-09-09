@@ -1,0 +1,31 @@
+# Learn more about configuring your checkout UI extension:
+# https://shopify.dev/docs/api/checkout-ui-extensions/latest/configuration
+
+# The version of APIs your extension will receive. Learn more:
+# https://shopify.dev/docs/api/usage/versioning
+api_version = "2026-07"
+
+[[extensions]]
+name = "phone-note-extension"
+handle = "phone-note-extension"
+type = "ui_extension"
+uid = "cddcfe20-3618-9efd-0035-97397e74f56cbaedd821"
+
+# Controls where in Shopify your extension will be injected,
+# and the file that contains your extension’s source code. Learn more:
+# https://shopify.dev/docs/api/checkout-ui-extensions/latest/extension-targets-overview
+
+[[extensions.targeting]]
+module = "./src/Checkout.jsx"
+target = "purchase.checkout.delivery-address.render-after"
+
+# Defines settings that will be collected from merchants installing
+# your extension. Learn more:
+# https://shopify.dev/docs/api/checkout-ui-extensions/latest/configuration#settings-definition
+
+[extensions.settings]
+[[extensions.settings.fields]]
+key = "note_content"
+type = "multi_line_text_field"
+name = "Note content (JSON)"
+description = "One entry per language code, e.g. {\"en\": {\"text\": \"...\"}, \"de\": {\"text\": \"...\"}}. Falls back to \"en\" if the buyer's language isn't listed."
